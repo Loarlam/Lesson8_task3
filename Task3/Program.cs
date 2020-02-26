@@ -30,11 +30,8 @@ namespace Task3
 
             accountant = new Accountant(myProfession, hoursWorkedInMonth);
 
-            if (accountant.SalaryIncreaseDecision)
-                Console.WriteLine($"\nДля {accountant.MappingProfession} положена премия.");
-            else
-                Console.WriteLine($"\nВ этом месяце {accountant.MappingProfession} без премии.");
-
+            Console.WriteLine(accountant.SalaryIncreaseDecision);
+            
             Console.ReadKey();
         }
     }

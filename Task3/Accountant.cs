@@ -28,8 +28,16 @@ namespace Task3
             _hours = hours;
         }
 
-        public bool SalaryIncreaseDecision => AskForBonus(_worker, _hours);
-        public Post MappingProfession => _worker;
+        public string SalaryIncreaseDecision
+        {
+            get
+            {
+                if (AskForBonus(_worker, _hours))
+                    return $"\nДля {_worker} положена премия.";
+                else
+                    return $"\nВ этом месяце {_worker} без премии.";
+            }
+        }
 
         bool AskForBonus(Post worker, int hours)
         {
