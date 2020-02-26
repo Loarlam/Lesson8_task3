@@ -4,32 +4,55 @@ namespace Task3
 {
     class Accountant
     {
-        public bool AskForBonus(Post worker, int hours)
+        Post _worker;
+        int _hours;
+
+        public Accountant(byte myProfession, int hours)
+        {
+            switch (myProfession)
+            {
+                case 1:
+                    _worker = Post.tester;
+                    break;
+                case 2:
+                    _worker = Post.programmer;
+                    break;
+                case 3:
+                    _worker = Post.manager;
+                    break;
+                default:
+                    Console.WriteLine("Ошибка! Профессия отсутствует в списке.");
+                    break;
+            }
+
+            _hours = hours;
+        }
+
+        public bool SalaryIncreaseDecision => AskForBonus(_worker, _hours);
+        public Post MappingProfession => _worker;
+
+        bool AskForBonus(Post worker, int hours)
         {
             switch (worker)
             {
                 case Post.tester:
                     if (hours > (int)Post.tester)
-                        Console.WriteLine($"\nДля {worker} положена премия.");
+                        return true;
                     else
-                        Console.WriteLine($"\nВ этом месяце {worker} без премии.");
-                    break;
+                        return false;
                 case Post.programmer:
                     if (hours > (int)Post.programmer)
-                        Console.WriteLine($"\nДля {worker} положена премия.");
+                        return true;
                     else
-                        Console.WriteLine($"\nВ этом месяце {worker} без премии.");
-                    break;
+                        return false;
                 case Post.manager:
                     if (hours > (int)Post.manager)
-                        Console.WriteLine($"\nДля {worker} положена премия.");
+                        return true;
                     else
-                        Console.WriteLine($"\nВ этом месяце {worker} без премии.");
-                    break;
+                        return false;
                 default:
-                    break;
+                    return false;
             }
-            return false;
         }
     }
 }

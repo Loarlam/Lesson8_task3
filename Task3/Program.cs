@@ -23,28 +23,17 @@ namespace Task3
             int hoursWorkedInMonth = 0;
 
             Console.Write("1 - тестировщик\n2 - программист\n3 - менеджер\nМой ответ = ");
-            myProfession = Byte.Parse(Console.ReadLine());
+            myProfession = byte.Parse(Console.ReadLine());
 
             Console.Write("\nКоличество отработанных часов в месяц = ");
-            hoursWorkedInMonth = Int32.Parse(Console.ReadLine());
+            hoursWorkedInMonth = int.Parse(Console.ReadLine());
 
-            accountant = new Accountant();
+            accountant = new Accountant(myProfession, hoursWorkedInMonth);
 
-            switch (myProfession)
-            {
-                case 1:
-                    accountant.AskForBonus(Post.tester, hoursWorkedInMonth);
-                    break;
-                case 2:
-                    accountant.AskForBonus(Post.programmer, hoursWorkedInMonth);
-                    break;
-                case 3:
-                    accountant.AskForBonus(Post.manager, hoursWorkedInMonth);
-                    break;
-                default:
-                    Console.WriteLine("Ошибка! Профессия отсутствует в списке.");
-                    break;
-            }
+            if (accountant.SalaryIncreaseDecision)
+                Console.WriteLine($"\nДля {accountant.MappingProfession} положена премия.");
+            else
+                Console.WriteLine($"\nВ этом месяце {accountant.MappingProfession} без премии.");
 
             Console.ReadKey();
         }
